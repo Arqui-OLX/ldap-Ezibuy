@@ -52,15 +52,7 @@ app.post('/insert', function (req, res) {
         if(!err){
             res.status(200).send(true);
         } else {
-            if(err.code === 68) {
-                res.status(409).send({
-                    error: "Email already in use"
-                });
-            } else {
-                res.status(500).send({
-                    error: "Something went wrong"
-                });
-            }   
+            res.status(200).send(false); 
             
          }
     })
@@ -92,9 +84,7 @@ app.get('/exists', function(req,response) {
     ldapClientAdmin.search(dn, dn, function(err, res){
         
           res.on('error', function(err) {
-            response.status(404).send({
-                error: "User not found"
-            });
+            response.status(200).send(false);
           });
           res.on('end', function(result) {
             response.status(200).send(true);
