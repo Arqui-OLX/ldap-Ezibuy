@@ -5,14 +5,12 @@ const ldap = require('ldapjs');
 
 const ldapClientAdmin = ldap.createClient({
     url: 'ldap://35.208.241.159:389',
-    ejectUnauthorized: false,
-	requestCert: true
+    reconnect: true
 });
 
 const ldapClient = ldap.createClient({
     url: 'ldap://35.208.241.159:389',
-    ejectUnauthorized: false,
-	requestCert: true
+    recconect: true
 })
 
 ldapClientAdmin.bind('cn=admin,dc=ezibuy,dc=com,dc=co', 'password', function(err) {
